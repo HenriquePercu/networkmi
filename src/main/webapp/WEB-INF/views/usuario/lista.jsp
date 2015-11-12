@@ -2,13 +2,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 	<body>
-		<a href="novoUsuario">Criar novo usuário</a>
+		<a href="novoUsuario">Criar novo usuário.</a>
 		<br />
 		<br />
 		<table>
 			<tr>
 				<th>Id</th>
 				<th>Nome</th>
+				<th>Senha</th>
+				<th>URL Foto</th>
 				<th>Data Nascimento</th>
 				<th>E-mail</th>
 				<th>Usuário Ativo</th>
@@ -19,6 +21,8 @@
 				<tr>
 					<td>${usuario.id}</td>
 					<td>${usuario.nome}</td>
+					<td>${usuario.password}</td>
+					<td>${usuario.urlFoto}</td>
 					<td>
 						<fmt:formatDate value="${usuario.dataNascimento}"
 							pattern="dd/MM/yyyy" />

@@ -57,6 +57,9 @@ public class Usuario extends TransferObject{
 	@Column(name = "PASSWORD")
 	private String password;
 	
+	@Column(name = "URL_FOTO")
+	private String urlFoto;
+	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "USUARIO_EVENTO" , joinColumns = { 
 			@JoinColumn(name = "ID_USUARIO", nullable = false, updatable = false) }, 
@@ -142,6 +145,13 @@ public class Usuario extends TransferObject{
 		this.password = password;
 	}
 
+	public String getUrlFoto() {
+		return urlFoto;
+	}
+
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
+	}
 
 	@Override
 	public String toString(){
@@ -149,6 +159,8 @@ public class Usuario extends TransferObject{
 			.append("[").append(this.nome).append("]")
 			.append("[").append(DateUtil.format(this.dataNascimento)).append("]")
 			.append("[").append(this.email).append("]")
+			.append("[").append(this.password).append("]")
+			.append("[").append(this.urlFoto).append("]")
 			.append("[").append(this.isUsuarioAtivo).append("]")
 			.append("[").append(DateUtil.format(this.dataCadastro)).append("]")
 			.append("[").append(this.hashtags).append("]").toString();
