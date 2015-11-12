@@ -20,12 +20,12 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.networkmi.model.Evento;
+import com.networkmi.model.to.TransferObject;
 import com.networkmi.util.DateUtil;
 
 @Entity
 @Table(name="USUARIO")
-public class Usuario {
+public class Usuario extends TransferObject{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

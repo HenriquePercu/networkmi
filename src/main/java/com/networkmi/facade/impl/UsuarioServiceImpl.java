@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.networkmi.constants.FaultMessages;
 import com.networkmi.dao.UsuarioDao;
 import com.networkmi.facade.UsuarioService;
 import com.networkmi.model.Usuario;
@@ -49,11 +50,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public Usuario obterUsuarioLogadoPorEmail(Usuario usuarioLogado) {
 		Usuario usuarioBase = usuarioDao.obterUsuarioPorEmail(usuarioLogado.getEmail());
 		
-		if(usuarioBase != null && usuarioBase.getPassword().equals(usuarioLogado.getPassword())){
-			return usuarioBase;
-		}else{
-			return null;	
+		if(usuarioBase == null){
+			usuarioBase = new Usuario();
+			usuarioBase.setFaultInfo(FaultMessages.USUARIO_NAO_CADASTRADO);
+		}else if(!usuarioBase.getPassword().equals(usuarioLogado.getPassword())){
+			usuarioBase = new Usuario();
+			usuarioBase.setFaultInfo(FaultMessages.SENHA_INCORRETA);
 		}
+		
+		return usuarioBase;
 	}
 	
 	
