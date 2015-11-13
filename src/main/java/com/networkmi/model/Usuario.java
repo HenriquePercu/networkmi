@@ -20,9 +20,12 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.networkmi.model.to.TransferObject;
 import com.networkmi.util.DateUtil;
 
+@JsonInclude(Include.NON_NULL)
 @Entity
 @Table(name="USUARIO")
 public class Usuario extends TransferObject{
