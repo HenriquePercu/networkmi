@@ -65,15 +65,26 @@ public class Usuario extends TransferObject{
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "USUARIO_EVENTO" , joinColumns = { 
-			@JoinColumn(name = "ID_USUARIO", nullable = false, updatable = false) }, 
+			@JoinColumn(name = "ID_USUARIO", nullable = false) }, 
 			inverseJoinColumns = { @JoinColumn(name = "ID_EVENTO", 
 					nullable = false) })
-	private Set<Evento> categories = new HashSet<Evento>(0);
+	private Set<Evento> eventos = new HashSet<Evento>(0);
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "USUARIO_CATEGORIA" , joinColumns = { 
+			@JoinColumn(name = "ID_USUARIO", nullable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "ID_CATEGORIA", 
+					nullable = false) })
+	private Set<Evento> categorias = new HashSet<Evento>(0);
 	
 	public Usuario(){}
 	
 	public Usuario(String nome){
 		this.nome = nome;
+	}
+	
+	public Usuario(Integer id){
+		this.id = id;
 	}
 	
 	public Integer getId() {
@@ -132,14 +143,14 @@ public class Usuario extends TransferObject{
 		this.hashtags = hashtags;
 	}
 
-	public Set<Evento> getCategories() {
-		return categories;
+	public Set<Evento> getEventos() {
+		return eventos;
 	}
 
-	public void setCategories(Set<Evento> categories) {
-		this.categories = categories;
+	public void setEventos(Set<Evento> eventos) {
+		this.eventos = eventos;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -167,6 +178,14 @@ public class Usuario extends TransferObject{
 			.append("[").append(this.isUsuarioAtivo).append("]")
 			.append("[").append(DateUtil.format(this.dataCadastro)).append("]")
 			.append("[").append(this.hashtags).append("]").toString();
+	}
+
+	public Set<Evento> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(Set<Evento> categorias) {
+		this.categorias = categorias;
 	}
 	
 }

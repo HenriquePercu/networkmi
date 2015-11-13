@@ -1,9 +1,14 @@
 package com.networkmi.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -11,10 +16,40 @@ import javax.persistence.Table;
 public class Categoria {
 
 	@Id
+	@Column(name = "ID_CATEGORIA", unique = true, nullable = false)
 	@GeneratedValue
 	private Short id;
 	
 	@Column( name = "DSC_CATEGORIA")
 	private String descricaoCategoria;
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
+	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
+
+	public Short getId() {
+		return id;
+	}
+
+	public void setId(Short id) {
+		this.id = id;
+	}
+
+	public String getDescricaoCategoria() {
+		return descricaoCategoria;
+	}
+
+	public void setDescricaoCategoria(String descricaoCategoria) {
+		this.descricaoCategoria = descricaoCategoria;
+	}
+
+	public Set<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+	
+	
 	
 }
