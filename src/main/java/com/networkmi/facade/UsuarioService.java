@@ -23,7 +23,7 @@ public interface UsuarioService {
 	 * Metodo que insere um usuario do app na base
 	 * @param usuario
 	 */
-	void inserirUsuario(Usuario usuario);
+	Usuario inserirUsuario(Usuario usuario);
 	
 	
 	/**

@@ -29,12 +29,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	@Transactional
-	public void inserirUsuario(Usuario usuario) {
+	public Usuario inserirUsuario(Usuario usuario) {
 		
 		usuario.setIsUsuarioAtivo(Boolean.TRUE);
 		usuario.setDataCadastro(new Date());
 		
-		this.usuarioDao.inserirUsuario(usuario);		
+		return this.usuarioDao.inserirUsuario(usuario);		
 	}
 
 	@Override

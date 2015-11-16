@@ -22,7 +22,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	}
 
 	@Override
-	public void inserirUsuario(Usuario usuario) {
+	public Usuario inserirUsuario(Usuario usuario) {
 		try{
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			
@@ -33,7 +33,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		}catch(Exception e){
 			System.out.println(e);
 		}
-				
+		return usuario;	
 	}
 
 	@Override

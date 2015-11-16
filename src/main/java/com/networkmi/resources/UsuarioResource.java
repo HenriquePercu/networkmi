@@ -40,9 +40,9 @@ public class UsuarioResource {
 	}
 	
 	@RequestMapping(value =  "/inserirusuario" , method = RequestMethod.POST)
-	public void inserirUsuario( @RequestBody Usuario usuario){
+	public Usuario inserirUsuario( @RequestBody Usuario usuario){
 		
-		usuarioService.inserirUsuario(usuario);
+		return usuarioService.inserirUsuario(usuario);
 			
 	}
 	

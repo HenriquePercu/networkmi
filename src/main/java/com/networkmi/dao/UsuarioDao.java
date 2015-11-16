@@ -11,6 +11,6 @@ public interface UsuarioDao {
 	
 	Usuario obterUsuarioPorEmail(String email);
 	
-	void inserirUsuario(Usuario usuario);
+	Usuario inserirUsuario(Usuario usuario);
 	
 }
