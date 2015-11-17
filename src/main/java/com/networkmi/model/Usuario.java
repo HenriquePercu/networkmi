@@ -75,7 +75,7 @@ public class Usuario extends TransferObject{
 			@JoinColumn(name = "ID_USUARIO", nullable = false) }, 
 			inverseJoinColumns = { @JoinColumn(name = "ID_CATEGORIA", 
 					nullable = false) })
-	private Set<Evento> categorias = new HashSet<Evento>(0);
+	private Set<Categoria> categorias = new HashSet<Categoria>(0);
 	
 	public Usuario(){}
 	
@@ -180,11 +180,11 @@ public class Usuario extends TransferObject{
 			.append("[").append(this.hashtags).append("]").toString();
 	}
 
-	public Set<Evento> getCategorias() {
+	public Set<Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(Set<Evento> categorias) {
+	public void setCategorias(Set<Categoria> categorias) {
 		this.categorias = categorias;
 	}
 	

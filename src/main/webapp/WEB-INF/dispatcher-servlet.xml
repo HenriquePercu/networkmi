@@ -11,9 +11,14 @@
 
 	<!-- Bean Definition -->
 	<bean id="usuarioDao" class="com.networkmi.dao.impl.UsuarioDaoImpl" />
+	<bean id="categoriaDao" class="com.networkmi.dao.impl.CategoriaDaoImpl" />
 
 	<bean id="usuarioService" class="com.networkmi.facade.impl.UsuarioServiceImpl">
 		<property name="usuarioDao" ref="usuarioDao" />
+	</bean>
+
+	<bean id="categoriaService" class="com.networkmi.facade.impl.CategoriaServiceImpl">
+		<property name="categoriaDao" ref="categoriaDao" />
 	</bean>
 
 	<bean

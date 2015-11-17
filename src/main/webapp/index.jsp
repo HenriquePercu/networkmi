@@ -32,6 +32,17 @@
 		<br />
 		<span>Obter Usuário (REST)</span>
 		<br />
-		<ul id='usuarios'>
+		<ul id='usuarios'></ul>
+		<br/><br/><br/><br/>
+		<h3>Categorias</h3>
+		<a href="novaCategoria">Criar nova categoria</a>
+		<br />
+		<a href="listaCategorias">Listar Categorias</a>
+		<br />
+		<a href="service/usuarios/todos">Listar Categorias (REST)</a>
+		<br />
+		<br />
+		<span>Obter Categoria (REST)</span>
+		<br />
 	</body>
 </html>

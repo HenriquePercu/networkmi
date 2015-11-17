@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 @Entity
 @Table(name="CATEGORIA")
 public class Categoria {
@@ -22,6 +26,9 @@ public class Categoria {
 	
 	@Column( name = "DSC_CATEGORIA")
 	private String descricaoCategoria;
+
+	@Column(name = "URL_FOTO")
+	private String urlFoto;
 	
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
 	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
@@ -48,6 +55,14 @@ public class Categoria {
 
 	public void setUsuarios(Set<Usuario> usuarios) {
 		this.usuarios = usuarios;
+	}
+
+	public String getUrlFoto() {
+		return urlFoto;
+	}
+
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
 	}
 	
 	
