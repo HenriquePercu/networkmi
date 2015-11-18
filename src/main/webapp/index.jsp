@@ -18,10 +18,27 @@
 					$("<li/>", {"text" : "Nenhum usuario."}).appendTo("#usuarios");
 				}
 			});
+			
+			var urlCategorias = window.location.href + "service/categorias/todos";
+			$.getJSON(urlCategorias, function(data){
+				if (data.length !== 0){
+					$.each(data, function(i, categoria) {
+						$("<li/>", { "text": categoria.descricaoCategoria })
+							.append(" ").append($("<a/>", {
+					  		 	"text" : window.location.href + "service/categorias/obtercategoria/" + categoria.id,
+							  	"href" : window.location.href + "service/categorias/obtercategoria/" + categoria.id
+						})).appendTo("#categorias");
+					});
+				} else {
+					$("<li/>", {"text" : "Nenhuma categoria."}).appendTo("#categorias");
+				}
+			});
 		</script>
 	</head>
 	<body>
 		<h2>Links NetworkMi 1.0.2</h2>
+		<br />
+		<a href="https://raw.githubusercontent.com/rodrigomacena/NetworkMi_Android/master/app/networkmi-release.apk">Baixar Networkmi APK</a>
 		<h3>Usuário</h3>
 		<a href="novoUsuario">Criar novo usuário</a>
 		<br />
@@ -39,10 +56,11 @@
 		<br />
 		<a href="listaCategorias">Listar Categorias</a>
 		<br />
-		<a href="service/usuarios/todos">Listar Categorias (REST)</a>
+		<a href="service/categorias/todos">Listar Categorias (REST)</a>
 		<br />
 		<br />
 		<span>Obter Categoria (REST)</span>
 		<br />
+		<ul id='categorias'></ul>
 	</body>
 </html>
