@@ -18,6 +18,7 @@
 	<mapping class="com.networkmi.model.Evento"/>
 	<mapping class="com.networkmi.model.Categoria"/>
     <mapping class="com.networkmi.model.UsuarioEvento"/>
+    <mapping class="com.networkmi.model.Hashtag"/>
     
   </session-factory>
 </hibernate-configuration>

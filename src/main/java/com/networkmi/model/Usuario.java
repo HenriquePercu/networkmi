@@ -65,7 +65,7 @@ public class Usuario extends TransferObject{
 	@Column(name = "URL_FOTO")
 	private String urlFoto;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY /*, cascade = CascadeType.ALL*/)
 	@JoinTable(name = "USUARIO_EVENTO" , joinColumns = { 
 			@JoinColumn(name = "ID_USUARIO", nullable = false) }, 
 			inverseJoinColumns = { @JoinColumn(name = "ID_EVENTO", 

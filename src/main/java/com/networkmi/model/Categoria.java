@@ -8,13 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @JsonInclude(Include.NON_NULL)
 @Entity
@@ -31,6 +29,9 @@ public class Categoria {
 
 	@Column(name = "URL_FOTO")
 	private String urlFoto;
+	
+	@OneToMany(fetch = FetchType.LAZY , mappedBy = "categoria")
+	private Set<Hashtag> hashtags = new HashSet<Hashtag>(0); 
 	
 	/*Comentato por problema com o Serializer Json - Ficava em looping infinito*/
 //	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
