@@ -13,4 +13,6 @@ public interface UsuarioDao {
 	
 	Usuario inserirUsuario(Usuario usuario);
 	
+	Usuario updateUsuario(Usuario usuario);
+	
 }

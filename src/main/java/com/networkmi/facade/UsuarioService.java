@@ -33,4 +33,11 @@ public interface UsuarioService {
 	 */
 	Usuario obterUsuarioLogadoPorEmail(Usuario usuario);
 	
+	/**
+	 * Metodo que insere categorias em um usuario por id de usuario
+	 * @param usuario
+	 * @return
+	 */
+	Usuario insereCategoriaUsuario(Usuario usuario);
+	
 }

@@ -20,7 +20,9 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.networkmi.model.to.TransferObject;
 import com.networkmi.util.DateUtil;
@@ -44,7 +46,7 @@ public class Usuario extends TransferObject{
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date dataNascimento;
 	
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL" , unique = true)
 	private String email;
 
 	@Column(name="FLG_ATIVO")
@@ -70,11 +72,11 @@ public class Usuario extends TransferObject{
 					nullable = false) })
 	private Set<Evento> eventos = new HashSet<Evento>(0);
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "USUARIO_CATEGORIA" , joinColumns = { 
-			@JoinColumn(name = "ID_USUARIO", nullable = false) }, 
+			@JoinColumn(name = "ID_USUARIO", nullable = false , updatable = false) }, 
 			inverseJoinColumns = { @JoinColumn(name = "ID_CATEGORIA", 
-					nullable = false) })
+					nullable = false, updatable = false) })
 	private Set<Categoria> categorias = new HashSet<Categoria>(0);
 	
 	public Usuario(){}

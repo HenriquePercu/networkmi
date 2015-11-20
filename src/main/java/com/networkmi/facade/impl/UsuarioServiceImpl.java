@@ -3,6 +3,7 @@ package com.networkmi.facade.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,7 +35,26 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuario.setIsUsuarioAtivo(Boolean.TRUE);
 		usuario.setDataCadastro(new Date());
 		
-		return this.usuarioDao.inserirUsuario(usuario);		
+		try{
+			
+			usuario =  this.usuarioDao.inserirUsuario(usuario);		
+			
+			if(usuario.getId() == null)
+				throw new ConstraintViolationException("Usuario ja existente", null, "EMAIL");
+			
+		}catch(ConstraintViolationException constraintViolationException){
+			
+			usuario = new Usuario();
+			usuario.setFaultInfo(FaultMessages.USUARIO_EXISTENTE);
+			
+		}catch(Exception e){
+			
+			usuario = new Usuario();
+			usuario.setFaultInfo(FaultMessages.ERRO_GENERICO);		
+			
+		}
+		
+		return usuario;
 	}
 
 	@Override
@@ -59,6 +79,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 		
 		return usuarioBase;
+	}
+
+	@Override
+	@Transactional
+	public Usuario insereCategoriaUsuario(Usuario usuario) {
+		return usuarioDao.updateUsuario(usuario);
 	}
 	
 	

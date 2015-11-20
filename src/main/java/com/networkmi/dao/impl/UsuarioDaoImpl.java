@@ -52,5 +52,20 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		return (Usuario) criteria.uniqueResult();
 	}
 
+	@Override
+	public Usuario updateUsuario(Usuario usuario) {
+		try{
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			
+			session.beginTransaction();
+			session.update(usuario);	
+			session.getTransaction().commit();
+			
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return usuario;	
+	}
+
 	
 }

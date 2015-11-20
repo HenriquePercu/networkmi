@@ -11,8 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @JsonInclude(Include.NON_NULL)
 @Entity
@@ -30,8 +32,9 @@ public class Categoria {
 	@Column(name = "URL_FOTO")
 	private String urlFoto;
 	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
-	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
+	/*Comentato por problema com o Serializer Json - Ficava em looping infinito*/
+//	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
+//	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
 
 	public Short getId() {
 		return id;
@@ -48,7 +51,7 @@ public class Categoria {
 	public void setDescricaoCategoria(String descricaoCategoria) {
 		this.descricaoCategoria = descricaoCategoria;
 	}
-
+/*
 	public Set<Usuario> getUsuarios() {
 		return usuarios;
 	}
@@ -56,7 +59,7 @@ public class Categoria {
 	public void setUsuarios(Set<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
-
+*/
 	public String getUrlFoto() {
 		return urlFoto;
 	}

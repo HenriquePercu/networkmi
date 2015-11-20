@@ -53,9 +53,9 @@ public class UsuarioResource {
 			
 	}
 	
-	@RequestMapping(value = "/alterarusuario/{id}" , method = RequestMethod.PUT)
-	public void alterarUsuario(@PathVariable long id ,@RequestBody Usuario usuario ){
-		System.out.println(usuario.getNome());
+	@RequestMapping(value = "/inserircategoriausuario" , method = RequestMethod.POST)
+	public Usuario alterarUsuario(@RequestBody Usuario usuario ){
+		return usuarioService.insereCategoriaUsuario(usuario);
 	}
 	
 	@RequestMapping( value =  "/login" , method = RequestMethod.POST)
