@@ -1,34 +1,38 @@
 package com.networkmi.util;
 
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistryBuilder;
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.stat.Statistics;
 
 public class HibernateUtil {
-   private static final SessionFactory sessionFactory = buildSessionFactory();
+	private static SessionFactory factory;
 
-  private static SessionFactory buildSessionFactory()
-  {
-      try
-      {
-    	  Configuration configuration = new Configuration().configure();
-    	  ServiceRegistryBuilder builder = new ServiceRegistryBuilder().applySettings(configuration.getProperties());
-    	  
-          return configuration.buildSessionFactory(builder.buildServiceRegistry());
-      }
-      catch (Throwable ex) {
-          System.err.println("Initial SessionFactory creation failed." + ex);
-          throw new ExceptionInInitializerError(ex);
-      }
-  }
+	private static ThreadLocal<Session> sessions = new ThreadLocal<Session>();
 
-  public static SessionFactory getSessionFactory() {
-      return sessionFactory;
-  }
+	static {
+		AnnotationConfiguration cfg = new AnnotationConfiguration();
+		cfg.configure();
 
-  public static void shutdown() {
-      // Close caches and connection pools
-      getSessionFactory().close();
-  }
+		factory = cfg.buildSessionFactory();
+	}
+
+	public static Session openSession() {
+		sessions.set(factory.openSession());
+		return sessions.get();
+	}
+
+	public static void closeCurrentSession() {
+		sessions.get().close();
+		sessions.set(null);
+	}
+
+	public static Session currentSession() {
+		return sessions.get();
+	}
+
+	public static Statistics getStatistics() {
+		return factory.getStatistics();
+	}
 }

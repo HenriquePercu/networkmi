@@ -17,7 +17,7 @@ public class CategoriaDaoImpl implements CategoriaDao{
 	@Override
 	public Categoria inserirCategoria(Categoria categoria) {
 		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
+			Session session = HibernateUtil.openSession();
 			
 			session.beginTransaction();
 			session.save(categoria);	
@@ -31,7 +31,7 @@ public class CategoriaDaoImpl implements CategoriaDao{
 
 	@Override
 	public List<Categoria> obterTodasCategorias() {
-		Criteria criteria = HibernateUtil.getSessionFactory().openSession().createCriteria(Categoria.class);
+		Criteria criteria = HibernateUtil.openSession().createCriteria(Categoria.class);
 		
 		return criteria.list();
 	}

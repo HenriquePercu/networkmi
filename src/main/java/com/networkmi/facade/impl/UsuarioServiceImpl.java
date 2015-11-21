@@ -84,7 +84,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	@Transactional
 	public Usuario insereCategoriaUsuario(Usuario usuario) {
-		return usuarioDao.updateUsuario(usuario);
+		Usuario usuarioCadastrado = usuarioDao.obterUsuarioPorId(usuario.getId());
+		
+		usuarioCadastrado.setCategorias(usuario.getCategorias());
+		
+		return usuarioDao.updateUsuario(usuarioCadastrado);
 	}
 	
 	

@@ -16,7 +16,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 
 	@Override
 	public List<Usuario> getTodosUsuarios() {
-		Criteria criteria = HibernateUtil.getSessionFactory().openSession().createCriteria(Usuario.class);
+		Criteria criteria = HibernateUtil.openSession().createCriteria(Usuario.class);
 		
 		return criteria.list();
 	}
@@ -24,7 +24,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	@Override
 	public Usuario inserirUsuario(Usuario usuario) {
 		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
+			Session session = HibernateUtil.openSession();
 			
 			session.beginTransaction();
 			session.save(usuario);	
@@ -38,15 +38,15 @@ public class UsuarioDaoImpl implements UsuarioDao{
 
 	@Override
 	public Usuario obterUsuarioPorId(Integer id) {
-		Criteria criteria = HibernateUtil.getSessionFactory().openSession().createCriteria(Usuario.class);
+		Criteria criteria = HibernateUtil.openSession().createCriteria(Usuario.class);
 		criteria.add(Restrictions.eq("id", id));
 		
 		return (Usuario) criteria.uniqueResult();
-	}
+	}	
 
 	@Override
 	public Usuario obterUsuarioPorEmail(String email) {
-		Criteria criteria = HibernateUtil.getSessionFactory().openSession().createCriteria(Usuario.class);
+		Criteria criteria = HibernateUtil.openSession().createCriteria(Usuario.class);
 		criteria.add(Restrictions.eq("email", email));
 		
 		return (Usuario) criteria.uniqueResult();
@@ -55,12 +55,11 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	@Override
 	public Usuario updateUsuario(Usuario usuario) {
 		try{
-			Session session = HibernateUtil.getSessionFactory().openSession();
+			Session session = HibernateUtil.currentSession();
 			
 			session.beginTransaction();
 			session.update(usuario);	
 			session.getTransaction().commit();
-			
 		}catch(Exception e){
 			System.out.println(e);
 		}

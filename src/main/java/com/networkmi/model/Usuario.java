@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,14 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.networkmi.model.to.TransferObject;
 import com.networkmi.util.DateUtil;
@@ -30,6 +28,8 @@ import com.networkmi.util.DateUtil;
 @JsonInclude(Include.NON_NULL)
 @Entity
 @Table(name="USUARIO")
+//@DynamicUpdate NAO FUNCIONANDO
+//@SelectBeforeUpdate NAO FUNCIONANDO
 public class Usuario extends TransferObject{
 
 	@Id
@@ -38,7 +38,6 @@ public class Usuario extends TransferObject{
 	private Integer id;
 	
 	@Column(name="NM_USUARIO")
-	@NotNull
 	@Size(min = 5)
 	private String nome;
 	
