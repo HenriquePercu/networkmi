@@ -3,11 +3,13 @@ package com.networkmi.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,13 +32,17 @@ public class Categoria {
 	@Column(name = "URL_FOTO")
 	private String urlFoto;
 	
-	@OneToMany(fetch = FetchType.LAZY , mappedBy = "categoria")
+	@OneToMany(fetch = FetchType.LAZY , mappedBy = "categoria" , cascade = CascadeType.ALL)
 	private Set<Hashtag> hashtags = new HashSet<Hashtag>(0); 
-	
-	/*Comentato por problema com o Serializer Json - Ficava em looping infinito*/
-//	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
-//	private Set<Usuario> usuarios = new HashSet<Usuario>(0);
 
+	public Categoria() {}
+	
+	public Categoria(Short id , String descricaoCategoria , Set<Hashtag> hashtags){
+		this.setId(id);
+		this.setDescricaoCategoria(descricaoCategoria);
+		this.setHashtags(hashtags);
+	}
+	
 	public Short getId() {
 		return id;
 	}
@@ -67,6 +73,14 @@ public class Categoria {
 
 	public void setUrlFoto(String urlFoto) {
 		this.urlFoto = urlFoto;
+	}
+
+	public Set<Hashtag> getHashtags() {
+		return hashtags;
+	}
+
+	public void setHashtags(Set<Hashtag> hashtags) {
+		this.hashtags = hashtags;
 	}
 	
 	

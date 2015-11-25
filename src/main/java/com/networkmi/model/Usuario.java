@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.networkmi.model.to.TransferObject;
 import com.networkmi.util.DateUtil;
 
-@JsonInclude(Include.NON_NULL)
 @Entity
 @Table(name="USUARIO")
 //@DynamicUpdate NAO FUNCIONANDO
@@ -55,9 +54,6 @@ public class Usuario extends TransferObject{
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date dataCadastro;
 	
-	@Column(name="DSC_HASHTAGS")
-	private String hashtags;
-	
 	@Column(name = "PASSWORD")
 	private String password;
 	
@@ -72,11 +68,11 @@ public class Usuario extends TransferObject{
 	private Set<Evento> eventos = new HashSet<Evento>(0);
 	
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "USUARIO_CATEGORIA" , joinColumns = { 
+	@JoinTable(name = "USUARIO_HASHTAG" , joinColumns = { 
 			@JoinColumn(name = "ID_USUARIO", nullable = false , updatable = false) }, 
-			inverseJoinColumns = { @JoinColumn(name = "ID_CATEGORIA", 
+			inverseJoinColumns = { @JoinColumn(name = "ID_HASHTAG", 
 					nullable = false, updatable = false) })
-	private Set<Categoria> categorias = new HashSet<Categoria>(0);
+	private Set<Hashtag> hashtags = new HashSet<Hashtag>(0);
 	
 	public Usuario(){}
 	
@@ -136,14 +132,6 @@ public class Usuario extends TransferObject{
 		this.dataCadastro = dataCadastro;
 	}
 
-	public String getHashtags() {
-		return hashtags;
-	}
-
-	public void setHashtags(String hashtags) {
-		this.hashtags = hashtags;
-	}
-
 	public Set<Evento> getEventos() {
 		return eventos;
 	}
@@ -181,12 +169,12 @@ public class Usuario extends TransferObject{
 			.append("[").append(this.hashtags).append("]").toString();
 	}
 
-	public Set<Categoria> getCategorias() {
-		return categorias;
+	public Set<Hashtag> getHashtags() {
+		return hashtags;
 	}
 
-	public void setCategorias(Set<Categoria> categorias) {
-		this.categorias = categorias;
+	public void setHashtags(Set<Hashtag> hashtags) {
+		this.hashtags = hashtags;
 	}
 	
 }

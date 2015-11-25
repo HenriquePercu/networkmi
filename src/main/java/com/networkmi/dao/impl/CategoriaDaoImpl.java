@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.networkmi.dao.CategoriaDao;
@@ -36,4 +37,27 @@ public class CategoriaDaoImpl implements CategoriaDao{
 		return criteria.list();
 	}
 
+	
+	public Categoria updateCategoria(Categoria categoria){
+		try{
+			Session session = HibernateUtil.openSession();
+			
+			session.beginTransaction();
+			session.update(categoria);	
+			session.getTransaction().commit();
+			
+		}catch(Exception e){
+			System.out.println(e);
+		}
+		return categoria;	
+		
+	}
+
+	@Override
+	public Categoria obterCategoriaPorId(Short id) {
+		Criteria criteria = HibernateUtil.openSession().createCriteria(Categoria.class);
+		criteria.add(Restrictions.eq("id", id));
+		
+		return (Categoria) criteria.uniqueResult();
+	}
 }

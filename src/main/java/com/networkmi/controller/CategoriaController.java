@@ -30,5 +30,14 @@ public class CategoriaController {
 		categoriaService.inserirCategoria(categoria);
 		return "categoria/adicionado";
 	}
+
+	@RequestMapping("insereHashtag")
+	public String insereHashtag(@Valid Categoria categoria, BindingResult result) {
+		
+		categoriaService.inserirHashTagsCategoria(categoria);
+		
+		return "/service/categorias/todos";
+		
+	}
 	
 }

@@ -1,5 +1,6 @@
 package com.networkmi.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,7 @@ public class Hashtag {
 	private String descricao;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_CATEGORIA")
+	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 	
 	public Short getId() {
@@ -44,7 +45,13 @@ public class Hashtag {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	
 }

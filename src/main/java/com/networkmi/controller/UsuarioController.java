@@ -24,9 +24,6 @@ public class UsuarioController {
 	
 	@RequestMapping("adicionaUsuario")
 	public String adiciona(@Valid Usuario usuario, BindingResult result) {
-		if (result.hasFieldErrors()) {
-			return "usuario/formulario";
-		}
 		System.out.println(usuario);
 		usuarioService.inserirUsuario(usuario);
 		return "usuario/adicionado";

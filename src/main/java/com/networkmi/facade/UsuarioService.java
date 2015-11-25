@@ -3,6 +3,7 @@ package com.networkmi.facade;
 import java.util.List;
 
 import com.networkmi.model.Usuario;
+import com.networkmi.model.to.UsuarioVO;
 
 public interface UsuarioService {
 
@@ -10,20 +11,20 @@ public interface UsuarioService {
 	 * Metodo que retorna todos os usuarios cadastros no banco de dados
 	 * @return
 	 */
-	List<Usuario> obterTodosUsuario();
+	List<UsuarioVO> obterTodosUsuario();
 	
 	/**
 	 * Recupera todas as informacoes do usuario pela pk
 	 * @param id
 	 * @return
 	 */
-	Usuario obterUsuarioPorId(Integer id);
+	UsuarioVO obterUsuarioPorId(Integer id);
 	
 	/**
 	 * Metodo que insere um usuario do app na base
 	 * @param usuario
 	 */
-	Usuario inserirUsuario(Usuario usuario);
+	UsuarioVO inserirUsuario(Usuario usuario);
 	
 	
 	/**
@@ -31,13 +32,13 @@ public interface UsuarioService {
 	 * @param usuario
 	 * @return
 	 */
-	Usuario obterUsuarioLogadoPorEmail(Usuario usuario);
-	
+	UsuarioVO obterUsuarioLogadoPorEmail(Usuario usuario);
+
 	/**
-	 * Metodo que insere categorias em um usuario por id de usuario
+	 * Metodo que insere as hashtags no usuario
 	 * @param usuario
 	 * @return
 	 */
-	Usuario insereCategoriaUsuario(Usuario usuario);
+	UsuarioVO insereHashtagUsuario(Usuario usuario);
 	
 }

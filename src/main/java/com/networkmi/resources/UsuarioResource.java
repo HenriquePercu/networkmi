@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.networkmi.facade.UsuarioService;
 import com.networkmi.model.Usuario;
+import com.networkmi.model.to.UsuarioVO;
 
 
 @RestController
@@ -29,18 +30,18 @@ public class UsuarioResource {
 	
 	@GET
 	@RequestMapping("/todos")
-	public List<Usuario> getTodosUsuarios(){
-		List<Usuario> retorno = usuarioService.obterTodosUsuario(); 
+	public List<UsuarioVO> getTodosUsuarios(){
+		List<UsuarioVO> retorno = usuarioService.obterTodosUsuario(); 
 		return retorno;
 	}
 	
 	@RequestMapping(value = "/obterusuario/{id}" , method = RequestMethod.GET)
-	public Usuario obterUsuario(@PathVariable Integer id ){
+	public UsuarioVO obterUsuario(@PathVariable Integer id ){
 		return usuarioService.obterUsuarioPorId(id);		
 	}
 	
 	@RequestMapping(value =  "/inserirusuario" , method = RequestMethod.POST)
-	public Usuario inserirUsuario( @RequestBody Usuario usuario){
+	public UsuarioVO inserirUsuario( @RequestBody Usuario usuario){
 		
 		return usuarioService.inserirUsuario(usuario);
 			
@@ -52,16 +53,18 @@ public class UsuarioResource {
 		System.out.println("");
 			
 	}
-	
-	@RequestMapping(value = "/inserircategoriausuario" , method = RequestMethod.POST)
-	public Usuario alterarUsuario(@RequestBody Usuario usuario ){
-		return usuarioService.insereCategoriaUsuario(usuario);
-	}
-	
+
 	@RequestMapping( value =  "/login" , method = RequestMethod.POST)
-	public Usuario login(@RequestBody Usuario usuario){
+	public UsuarioVO login(@RequestBody Usuario usuario){
 		
 		return usuarioService.obterUsuarioLogadoPorEmail(usuario);
+		
+	}
+	
+	@RequestMapping( value =  "/inserirhashtag" , method = RequestMethod.POST)
+	public UsuarioVO insereHashtag(@RequestBody Usuario usuario){
+		
+		return usuarioService.insereHashtagUsuario(usuario);
 		
 	}
 	
