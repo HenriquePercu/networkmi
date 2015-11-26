@@ -64,7 +64,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		}catch(Exception e){
 			System.out.println(e);
 		}
-		return usuario;	
+		return obterUsuarioPorId(usuario.getId());	
 	}
 
 	
