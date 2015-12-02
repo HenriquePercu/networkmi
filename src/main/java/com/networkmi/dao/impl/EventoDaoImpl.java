@@ -7,57 +7,56 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.networkmi.dao.CategoriaDao;
-import com.networkmi.model.Categoria;
-import com.networkmi.model.Usuario;
+import com.networkmi.dao.EventoDao;
+import com.networkmi.model.Evento;
 import com.networkmi.util.HibernateUtil;
 
 @Repository
-public class CategoriaDaoImpl implements CategoriaDao{
+public class EventoDaoImpl implements EventoDao{
 
 	@Override
-	public Categoria inserirCategoria(Categoria categoria) {
+	public Evento inserirEvento(Evento evento) {
 		try{
 			Session session = HibernateUtil.openSession();
 			
 			session.beginTransaction();
-			session.save(categoria);	
+			session.save(evento);	
 			session.getTransaction().commit();
 			
 		}catch(Exception e){
 			System.out.println(e);
 		}
-		return categoria;	
+		return evento;	
 	}
 
 	@Override
-	public List<Categoria> obterTodasCategorias() {
-		Criteria criteria = HibernateUtil.openSession().createCriteria(Categoria.class);
+	public List<Evento> obterTodosEventos() {
+		Criteria criteria = HibernateUtil.openSession().createCriteria(Evento.class);
 		
 		return criteria.list();
 	}
 
 	
-	public Categoria updateCategoria(Categoria categoria){
+	public Evento updateEvento(Evento evento){
 		try{
 			Session session = HibernateUtil.openSession();
 			
 			session.beginTransaction();
-			session.update(categoria);	
+			session.update(evento);	
 			session.getTransaction().commit();
 			
 		}catch(Exception e){
 			System.out.println(e);
 		}
-		return categoria;	
+		return evento;	
 		
 	}
 
 	@Override
-	public Categoria obterCategoriaPorId(Short id) {
-		Criteria criteria = HibernateUtil.openSession().createCriteria(Categoria.class);
+	public Evento obterEventoPorId(Integer id) {
+		Criteria criteria = HibernateUtil.openSession().createCriteria(Evento.class);
 		criteria.add(Restrictions.eq("id", id));
 		
-		return (Categoria) criteria.uniqueResult();
+		return (Evento) criteria.uniqueResult();
 	}
 }

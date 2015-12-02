@@ -12,6 +12,7 @@
 	<!-- Bean Definition -->
 	<bean id="usuarioDao" class="com.networkmi.dao.impl.UsuarioDaoImpl" />
 	<bean id="categoriaDao" class="com.networkmi.dao.impl.CategoriaDaoImpl" />
+	<bean id="eventoDao" class="com.networkmi.dao.impl.EventoDaoImpl" />
 
 	<bean id="usuarioService" class="com.networkmi.facade.impl.UsuarioServiceImpl">
 		<property name="usuarioDao" ref="usuarioDao" />
@@ -19,6 +20,10 @@
 
 	<bean id="categoriaService" class="com.networkmi.facade.impl.CategoriaServiceImpl">
 		<property name="categoriaDao" ref="categoriaDao" />
+	</bean>
+	
+	<bean id="eventoService" class="com.networkmi.facade.impl.EventoServiceImpl">
+		<property name="eventoDao" ref="eventoDao" />
 	</bean>
 
 	<bean

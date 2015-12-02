@@ -33,10 +33,25 @@
 					$("<li/>", {"text" : "Nenhuma categoria."}).appendTo("#categorias");
 				}
 			});
+			
+			var urlEventos = window.location.href + "service/eventos/todos";
+			$.getJSON(urlEventos, function(data){
+				if (data.length !== 0){
+					$.each(data, function(i, evento) {
+						$("<li/>", { "text": evento.descricaoEvento })
+							.append(" ").append($("<a/>", {
+					  		 	"text" : window.location.href + "service/eventos/obterevento/" + evento.id,
+							  	"href" : window.location.href + "service/eventos/obterevento/" + evento.id
+						})).appendTo("#eventos");
+					});
+				} else {
+					$("<li/>", {"text" : "Nenhum evento."}).appendTo("#eventos");
+				}
+			});
 		</script>
 	</head>
 	<body>
-		<h2>Links NetworkMi 1.0.2</h2>
+		<h2>Links NetworkMi 1.0.3</h2>
 		<br />
 		<a href="https://raw.githubusercontent.com/rodrigomacena/NetworkMi_Android/master/app/networkmi-release.apk">Baixar Networkmi APK</a>
 		<h3>Usuário</h3>
@@ -50,7 +65,8 @@
 		<span>Obter Usuário (REST)</span>
 		<br />
 		<ul id='usuarios'></ul>
-		<br/><br/><br/><br/>
+		
+		<br/><br/>
 		<h3>Categorias</h3>
 		<a href="novaCategoria">Criar nova categoria</a>
 		<br />
@@ -62,5 +78,18 @@
 		<span>Obter Categoria (REST)</span>
 		<br />
 		<ul id='categorias'></ul>
+		
+		<br/><br/>
+		<h3>Eventos</h3>
+		<a href="novoEvento">Criar novo evento</a>
+		<br />
+		<a href="listaEventos">Listar Eventos</a>
+		<br />
+		<a href="service/eventos/todos">Listar Eventos (REST)</a>
+		<br />
+		<br />
+		<span>Obter Evento (REST)</span>
+		<br />
+		<ul id='eventos'></ul>
 	</body>
 </html>

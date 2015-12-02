@@ -15,34 +15,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.networkmi.facade.CategoriaService;
+import com.networkmi.facade.EventoService;
 import com.networkmi.model.Categoria;
 import com.networkmi.model.to.CategoriaVO;
+import com.networkmi.model.to.EventoVO;
 
 @RestController
-@RequestMapping("/service/categorias/")
+@RequestMapping("/service/eventos/")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class CategoriaResource {
+public class EventoResource {
 
     @Autowired
-	private CategoriaService categoriaService;
+	private EventoService eventoService;
     
 	@GET
 	@RequestMapping("/todos")
-	public List<CategoriaVO> getTodasCategorias(){
-		List<CategoriaVO> retorno = categoriaService.obterTodasCategorias(); 
+	public List<EventoVO> getTodosEventos(){
+		List<EventoVO> retorno = eventoService.obterTodosEventos(); 
 		return retorno;
 	}
 	
-	@RequestMapping(value = "/obtercategoria/{id}" , method = RequestMethod.GET)
-	public CategoriaVO obterCategoriaPorId(@PathVariable Integer id ){
-		return categoriaService.obterCategoriaPorId(id.shortValue());		
+	@RequestMapping(value = "/obterevento/{id}" , method = RequestMethod.GET)
+	public EventoVO obterEventoPorId(@PathVariable Integer id ){
+		return eventoService.obterEventoPorId(id);		
 	}
-	
-	@RequestMapping(value = "/inserirhashtag" , method = RequestMethod.POST)
-	public CategoriaVO inserirHashtag(@RequestBody Categoria categoria ){
-		return categoriaService.inserirHashTagsCategoria(categoria);
-	}
-	
-	
 }

@@ -42,9 +42,12 @@ public class UsuarioResource {
 	
 	@RequestMapping(value =  "/inserirusuario" , method = RequestMethod.POST)
 	public UsuarioVO inserirUsuario( @RequestBody Usuario usuario){
-		
-		return usuarioService.inserirUsuario(usuario);
-			
+		try {
+			return usuarioService.inserirUsuario(usuario);
+		} catch (Exception e){
+			System.out.println("Erro:" + e);
+		}
+		return null;
 	}
 	
 	@RequestMapping( value =  "/inserirmuitosusuairo" , method = RequestMethod.POST)
