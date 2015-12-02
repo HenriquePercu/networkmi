@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.networkmi.facade.CategoriaService;
 import com.networkmi.facade.EventoService;
-import com.networkmi.model.Categoria;
-import com.networkmi.model.to.CategoriaVO;
+import com.networkmi.model.Evento;
 import com.networkmi.model.to.EventoVO;
 
 @RestController
@@ -39,5 +37,15 @@ public class EventoResource {
 	@RequestMapping(value = "/obterevento/{id}" , method = RequestMethod.GET)
 	public EventoVO obterEventoPorId(@PathVariable Integer id ){
 		return eventoService.obterEventoPorId(id);		
+	}
+	
+	@RequestMapping(value =  "/inserirevento" , method = RequestMethod.POST)
+	public Evento inserirEvento( @RequestBody Evento evento){
+		try {
+			return eventoService.inserirEvento(evento);
+		} catch (Exception e){
+			System.out.println("Erro:" + e);
+		}
+		return null;
 	}
 }

@@ -1,22 +1,15 @@
 package com.networkmi.facade.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.networkmi.dao.CategoriaDao;
 import com.networkmi.dao.EventoDao;
-import com.networkmi.facade.CategoriaService;
 import com.networkmi.facade.EventoService;
-import com.networkmi.model.Categoria;
 import com.networkmi.model.Evento;
-import com.networkmi.model.Hashtag;
-import com.networkmi.model.to.CategoriaVO;
 import com.networkmi.model.to.EventoVO;
-import com.networkmi.model.to.HashtagVO;
 
 @Service("eventoService")
 public class EventoServiceImpl implements EventoService {
