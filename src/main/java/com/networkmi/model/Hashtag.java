@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class Hashtag {
 
 	@Id
-	@Column(name = "ID_HASHTAG", unique = true, nullable = false)
-	@GeneratedValue
+	@Column(name = "ID_HASHTAG" /*, unique = true*/, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Short id;
 
 	@Column(name = "DSC_HASHTAG")

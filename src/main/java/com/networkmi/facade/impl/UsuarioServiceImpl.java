@@ -3,6 +3,7 @@ package com.networkmi.facade.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -103,9 +104,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Transactional
 	public UsuarioVO insereHashtagUsuario(Usuario usuario) {
 		Usuario usuarioCadastrado = usuarioDao.obterUsuarioPorId(usuario.getId());
-
-		usuarioCadastrado.setHashtags(usuario.getHashtags());
 		
+		/*Lista categorias que serao alteradas*/
+		List<Short> categoriasSelecionadas = getListaCategoriasSelecionadas(usuario.getHashtags());
+
+		/*Retiras todas as hashtags com as categorias acima  da usuarioCadastrado*/
+		removeCategoriasUsuario(usuarioCadastrado, categoriasSelecionadas);
+		
+		/*Adiciona hashtags para update*/
+		usuarioCadastrado.getHashtags().addAll(usuario.getHashtags());
+
 		return getUsuarioVO(usuarioDao.updateUsuario(usuarioCadastrado));
 	}
 	
@@ -143,5 +151,29 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioVO;
 	}
 	
+	private List<Short> getListaCategoriasSelecionadas(Set<Hashtag> hashtags ) {
+		List<Short> listaCategorias = new ArrayList<Short>();
+		
+		for (Hashtag hashtag : hashtags) {
+
+			listaCategorias.add(hashtag.getCategoria().getId());
+			
+		}
+		
+		return listaCategorias;
+	}
+	
+	private void removeCategoriasUsuario(Usuario usuario , List<Short> categorias){
+		
+		for(Iterator<Hashtag> i = usuario.getHashtags().iterator(); i.hasNext();) {
+			Hashtag hashtag = i.next();
+			
+			if(categorias.contains(hashtag.getCategoria().getId())){
+				i.remove();
+			}
+			
+		}
+		
+	}
 
 }
