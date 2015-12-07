@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.networkmi.facade.CategoriaService;
 import com.networkmi.model.Categoria;
 import com.networkmi.model.to.CategoriaVO;
+import com.networkmi.model.to.HashtagVO;
 
 @RestController
 @RequestMapping("/service/categorias/")
@@ -44,5 +45,9 @@ public class CategoriaResource {
 		return categoriaService.inserirHashTagsCategoria(categoria);
 	}
 	
+	@RequestMapping(value = "/obterhashtagnome/{id}/{nome}" , method = RequestMethod.GET)
+	public List<HashtagVO> obterHashtagPorNome( @PathVariable("id") Short id, @PathVariable("nome") String nome){
+		return categoriaService.obtemHashtagsPorNome(id , nome);
+	}
 	
 }

@@ -1,4 +1,4 @@
-package com.networkmi.facade.impl;
+	package com.networkmi.facade.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,10 +60,17 @@ public class CategoriaServiceImpl implements CategoriaService{
 	}
 
 	@Override
+	@Transactional 
 	public CategoriaVO obterCategoriaPorId(Short id) {
+		// TODO Auto-generated method stub
 		return getCategoriaVO(categoriaDao.obterCategoriaPorId(id));
 	}
 
+	@Override
+	@Transactional 
+	public List<HashtagVO> obtemHashtagsPorNome(Short idCategoria, String nome) {
+		return getHashtagVO(categoriaDao.obtemHashtagsPorNome(idCategoria, nome));
+	}
 	
 	private CategoriaVO getCategoriaVO(Categoria categoria){
 		CategoriaVO categoriaVO = new CategoriaVO();
@@ -82,4 +89,17 @@ public class CategoriaServiceImpl implements CategoriaService{
 
 		return categoriaVO;
 	}
+
+	private List<HashtagVO> getHashtagVO(List<Hashtag> hashtags){
+		
+		ArrayList<HashtagVO> hashtagVO = new ArrayList<HashtagVO>();
+		
+		for (Hashtag hashtag : hashtags) {
+			hashtagVO.add(new HashtagVO(hashtag));
+		}
+		
+		return hashtagVO;
+		
+	}
+
 }

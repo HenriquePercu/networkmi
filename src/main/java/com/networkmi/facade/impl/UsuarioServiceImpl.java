@@ -116,6 +116,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 		return getUsuarioVO(usuarioDao.updateUsuario(usuarioCadastrado));
 	}
+
+	@Override
+	@Transactional
+	public UsuarioVO insereEvento(Usuario usuario) {
+
+		Usuario usuarioCadastrado = usuarioDao.obterUsuarioPorId(usuario.getId());
+
+		
+		
+		return getUsuarioVO(usuarioDao.updateUsuario(usuarioCadastrado));
+		
+	}
 	
 	private UsuarioVO getUsuarioVO(Usuario usuario){
 		UsuarioVO usuarioVO = new UsuarioVO();
@@ -175,5 +187,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 		
 	}
+
+
 
 }

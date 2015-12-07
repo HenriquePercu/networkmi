@@ -71,6 +71,13 @@ public class UsuarioResource {
 		
 	}
 	
+	@RequestMapping( value =  "/inserirevento" , method = RequestMethod.POST)
+	public UsuarioVO insereEvento(@RequestBody Usuario usuario){
+		
+		return usuarioService.insereEvento(usuario);
+		
+	}
+	
 	
 }
 

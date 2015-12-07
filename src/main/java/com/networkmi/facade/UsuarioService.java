@@ -41,4 +41,12 @@ public interface UsuarioService {
 	 */
 	UsuarioVO insereHashtagUsuario(Usuario usuario);
 	
+	
+	/**
+	 * Metodo que atrela um evento ao usuario
+	 * @param usuario
+	 * @return
+	 */
+	UsuarioVO insereEvento(Usuario usuario);
+	
 }

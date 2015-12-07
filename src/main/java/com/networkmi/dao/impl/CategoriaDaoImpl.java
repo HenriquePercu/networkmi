@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.networkmi.dao.CategoriaDao;
 import com.networkmi.model.Categoria;
+import com.networkmi.model.Hashtag;
 import com.networkmi.model.Usuario;
 import com.networkmi.util.HibernateUtil;
 
@@ -59,5 +61,15 @@ public class CategoriaDaoImpl implements CategoriaDao{
 		criteria.add(Restrictions.eq("id", id));
 		
 		return (Categoria) criteria.uniqueResult();
+	}
+
+	@Override
+	public List<Hashtag> obtemHashtagsPorNome(Short idCategoria, String nome) {
+	
+		Criteria criteria = HibernateUtil.openSession().createCriteria(Hashtag.class);
+		criteria.add(Restrictions.eq("categoria.id", idCategoria));
+		criteria.add(Restrictions.ilike("descricao", nome, MatchMode.ANYWHERE));
+		
+		return criteria.list();
 	}
 }

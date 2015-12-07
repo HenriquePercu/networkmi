@@ -3,6 +3,7 @@ package com.networkmi.dao;
 import java.util.List;
 
 import com.networkmi.model.Categoria;
+import com.networkmi.model.Hashtag;
 
 public interface CategoriaDao {
 
@@ -13,4 +14,6 @@ public interface CategoriaDao {
 	Categoria updateCategoria(Categoria categoria);
 	
 	Categoria obterCategoriaPorId(Short id);
+	
+	List<Hashtag> obtemHashtagsPorNome(Short idCategoria , String nome);
 }

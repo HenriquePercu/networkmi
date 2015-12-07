@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.networkmi.model.Categoria;
 import com.networkmi.model.to.CategoriaVO;
+import com.networkmi.model.to.HashtagVO;
 
 public interface CategoriaService {
 
@@ -34,5 +35,13 @@ public interface CategoriaService {
 	 * @return
 	 */
 	CategoriaVO obterCategoriaPorId(Short id);
+	
+	/**
+	 * Obtem hashtags por like através de uma categoria
+	 * @param idCategoria
+	 * @param nome
+	 * @return
+	 */
+	List<HashtagVO> obtemHashtagsPorNome(Short idCategoria , String nome);
 	
 }
