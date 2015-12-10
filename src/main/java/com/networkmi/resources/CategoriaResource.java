@@ -40,6 +40,11 @@ public class CategoriaResource {
 		return categoriaService.obterCategoriaPorId(id.shortValue());		
 	}
 	
+	@RequestMapping(value = "/obterlistacategoria" , method = RequestMethod.POST)
+	public List<CategoriaVO> obterListaCategoriasFiltroId(@RequestBody List<Short> listaCategorias ){
+		return categoriaService.obterListaCategoriaPorId(listaCategorias);		
+	}
+	
 	@RequestMapping(value = "/inserirhashtag" , method = RequestMethod.POST)
 	public CategoriaVO inserirHashtag(@RequestBody Categoria categoria ){
 		return categoriaService.inserirHashTagsCategoria(categoria);
@@ -47,7 +52,7 @@ public class CategoriaResource {
 	
 	@RequestMapping(value = "/obterhashtagnome/{id}/{nome}" , method = RequestMethod.GET)
 	public List<HashtagVO> obterHashtagPorNome( @PathVariable("id") Short id, @PathVariable("nome") String nome){
-		return categoriaService.obtemHashtagsPorNome(id , nome);
+		return categoriaService.obterHashtagsPorNome(id , nome);
 	}
 	
 }

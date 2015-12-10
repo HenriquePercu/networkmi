@@ -8,7 +8,8 @@
     <property name="show_sql">true</property> 
     
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost/networkmi</property>
+<!--     <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-232-212-172.sa-east-1.compute.amazonaws.com/networkmi</property> -->
+	<property name="hibernate.connection.url">jdbc:postgresql://localhost/networkmi</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">admin</property>    
     

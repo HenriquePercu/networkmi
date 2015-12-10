@@ -68,9 +68,16 @@ public class CategoriaServiceImpl implements CategoriaService{
 
 	@Override
 	@Transactional 
-	public List<HashtagVO> obtemHashtagsPorNome(Short idCategoria, String nome) {
+	public List<HashtagVO> obterHashtagsPorNome(Short idCategoria, String nome) {
 		return getHashtagVO(categoriaDao.obtemHashtagsPorNome(idCategoria, nome));
 	}
+	
+
+	@Override
+	public List<CategoriaVO> obterListaCategoriaPorId(List<Short> listaCategorias) {
+		return getListaHashTagVO(categoriaDao.obtemListaCategorias(listaCategorias));
+	}
+	
 	
 	private CategoriaVO getCategoriaVO(Categoria categoria){
 		CategoriaVO categoriaVO = new CategoriaVO();
@@ -100,6 +107,20 @@ public class CategoriaServiceImpl implements CategoriaService{
 		
 		return hashtagVO;
 		
+	}
+	
+	private List<CategoriaVO> getListaHashTagVO(List<Categoria> listaCategoriasDao){
+		
+		ArrayList<CategoriaVO> listaCategoriaVO = new ArrayList<CategoriaVO>();
+		
+		for (Categoria categoriaDao : listaCategoriasDao) {
+			
+			listaCategoriaVO.add(getCategoriaVO(categoriaDao));
+			
+		}
+				
+		return listaCategoriaVO;
+			
 	}
 
 }

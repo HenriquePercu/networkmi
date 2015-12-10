@@ -16,4 +16,7 @@ public interface CategoriaDao {
 	Categoria obterCategoriaPorId(Short id);
 	
 	List<Hashtag> obtemHashtagsPorNome(Short idCategoria , String nome);
+	
+	List<Categoria> obtemListaCategorias(List<Short> listaCategorias);
+	
 }

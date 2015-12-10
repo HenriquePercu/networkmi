@@ -1,7 +1,10 @@
 package com.networkmi.model.to;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.networkmi.model.Hashtag;
 
+@JsonInclude(Include.NON_NULL)
 public class HashtagVO {
 
 	public HashtagVO(){}

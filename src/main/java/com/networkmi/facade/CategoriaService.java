@@ -42,6 +42,13 @@ public interface CategoriaService {
 	 * @param nome
 	 * @return
 	 */
-	List<HashtagVO> obtemHashtagsPorNome(Short idCategoria , String nome);
+	List<HashtagVO> obterHashtagsPorNome(Short idCategoria , String nome);
+	
+	/**
+	 * Retorna uma lista de categorias e suas hashtags de acordo com uma lista de ID passados por parametro
+	 * @param listaCategorias
+	 * @return
+	 */
+	List<CategoriaVO> obterListaCategoriaPorId(List<Short> listaCategorias);
 	
 }

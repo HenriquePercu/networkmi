@@ -72,4 +72,13 @@ public class CategoriaDaoImpl implements CategoriaDao{
 		
 		return criteria.list();
 	}
+
+	@Override
+	public List<Categoria> obtemListaCategorias(List<Short> listaCategorias) {
+		Criteria criteria = HibernateUtil.openSession().createCriteria(Categoria.class);
+
+		criteria.add(Restrictions.in("id", listaCategorias));
+		
+		return criteria.list();
+	}
 }
